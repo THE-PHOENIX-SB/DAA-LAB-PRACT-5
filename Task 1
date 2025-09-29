@@ -1,0 +1,33 @@
+def lcs(a, b): 
+    m, n = len(a), len(b) 
+    c = [] 
+ 
+    
+    for _ in range(m + 1): 
+        c.append([0] * (n + 1)) 
+ 
+    
+    for i in range(1, m + 1): 
+        for j in range(1, n + 1): 
+            if a[i - 1] == b[j - 1]: 
+                c[i][j] = c[i - 1][j - 1] + 1 
+            else: 
+                c[i][j] = max(c[i - 1][j], c[i][j - 1]) 
+ 
+    
+    print("LCS Table:") 
+    for row in c: 
+        print(row) 
+ 
+    return c[m][n] 
+ 
+ 
+input_string = input("Enter two strings separated by space: ") 
+string_list = input_string.split() 
+ 
+if len(string_list) == 2: 
+    a, b = string_list 
+    result = lcs(a, b) 
+    print(f"LCS length between '{a}' and '{b}' is: {result}") 
+else: 
+print("Please enter exactly two strings.")
